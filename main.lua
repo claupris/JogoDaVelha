@@ -14,8 +14,8 @@ end
 -- atualiza
 function love.update(dt)
   close()
-  love.mousepressed( mX, mY, button, istouch)
-  --mouse_update()
+  love.mousepressed( mX, mY, 1, istouch)
+  mapa_update()
   --movePlayer()
 end
 

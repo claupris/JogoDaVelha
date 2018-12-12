@@ -15,12 +15,17 @@ end
 function mapa_load()
   mapa = {}
   jogada = 1
-  mX = love.mouse.getX( )
-  mY = love.mouse.getY( )
   pX = love.graphics.newImage("imagens/x.png")
   pO = love.graphics.newImage("imagens/o.png")
+
 end
 
+function mapa_update()
+  if love.mouse.isDown("1") then
+    mX = love.mouse.getX( )
+    mY = love.mouse.getY( )
+  end
+end
 
 
 function mapa_draw()
@@ -42,7 +47,7 @@ function mapa_draw()
   mapa[1] = {rectangle1,rectangle2,rectangle3}
   mapa[2] = {rectangle4,rectangle5,rectangle6}
   mapa[3] = {rectangle7,rectangle8,rectangle9}
-
+print(mX)
   
 end
 
