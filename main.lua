@@ -2,14 +2,11 @@ math.randomseed(os.time())
 
 require "player"
 require "mapa"
-require "física"
-
-
+require "menu"
 
 -- chama apenas uma vez
 function love.load()
   mapa_load()
-  player_load()
 end
 
 function love.mousereleased()
@@ -24,8 +21,10 @@ end
 
 -- desenha na tela
 function love.draw()
+
   mapa_draw()
   player_draw()
+
 end
 
 

@@ -1,4 +1,5 @@
-require "física"
+require "player"
+
 -- fecha o jogo
 function close()
   if love.keyboard.isDown ("escape")  then
@@ -35,9 +36,12 @@ function mapa_load()
   posicoes[3] = {nil, nil, nil}
 
   jogada = 1
-
+  
+  love.graphics.setBackgroundColor(1, 0, 1)
   imgX = love.graphics.newImage("imagens/x0.png")
-  imgO = love.graphics.newImage("imagens/o0.png")
+  imgO = love.graphics.newImage("imagens/o0.png")  
+
+  player_load()
 
 end
 
@@ -50,9 +54,14 @@ end
 
 
 function mapa_draw()
+  love.graphics.print({{0, 0, 0, 1}, 'Jogo da Velha'}, 350, 40)
   -- desenha os retangulos
-  --love.graphics.setColor( math.random(), math.random(), math.random());
-  love.graphics.setColor( 255, 255, 255);
+  if stop then 
+    love.graphics.setColor( math.random(), math.random(), math.random());
+  else
+    love.graphics.setColor( 255, 255, 255);
+  end
+
   -- primeira linha
   rectangle1 = love.graphics.rectangle("fill", 120, 100, 175, 125);
   rectangle2 = love.graphics.rectangle("fill", 300, 100, 175, 125);
@@ -84,11 +93,16 @@ function mapa_draw()
     end
   end
 
+  if not stop and jogada > 9 then
+    stop = true
+    print('stop', jogada)
+  end
+
 end
 
 function mapa_mousereleased(mX, mY, button)
   love.graphics.setColor( 255, 0, 0);
-  if mX ~= nil and mY ~= nil and button ~= nil then
+  if mX ~= nil and mY ~= nil and button ~= nil and not stop then
     if button == 1 and (mX >= 120 and mX <= 295) and (mY >= 100 and mY <= 225) and posicoes[1][1] == nil then
       ponto = {150 ,110}  -- x, y
       posicoes[1][1] = ponto; -- guarda a coordenada
