@@ -9,21 +9,23 @@ require "física"
 -- chama apenas uma vez
 function love.load()
   mapa_load()
+  player_load()
 end
 
+function love.mousereleased()
+  mapa_mousereleased(mX, mY, 1)
+end
 -- atualiza
 function love.update(dt)
   close()
-  love.mousepressed( mX, mY, 1, istouch)
   mapa_update()
-  --movePlayer()
+  restart()
 end
 
 -- desenha na tela
 function love.draw()
   mapa_draw()
-  -- player(mX, mY, recX, recY, touch)
- -- love.physics.newRectangleShape( x, y, width, height, angle )
+  player_draw()
 end
 
 
