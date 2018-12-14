@@ -1,5 +1,8 @@
+require "sound"
 
 function player_load()
+
+  sound_load()
 
   checaVitoria = {};
 
@@ -23,27 +26,33 @@ function player_update(x, y, v)
 end
 
 function player_draw()
-  
+  sound_draw()
   checaLinha() 
   checaColuna()
   checaDiagonal1() 
   checaDiagonal2()
-  
+
   if printX ~= nil and printX then    
     love.graphics.draw(venceX, 100, 90)
+    love.audio.stop(somFundo);
+    love.audio.play(aplausos);
   elseif printO ~= nil and printO then    
     love.graphics.draw(venceO, 100, 90)
+    love.audio.stop(somFundo);
+    love.audio.play(aplausos);
   elseif stop and  printX == nil and  printO == nil then
     love.graphics.draw(velha, 100, 90)
+    love.audio.stop(somFundo);
+    love.audio.play(gameOver);
   end
-  
+
 end
 
 function checaLinha()
   for i = 1, 3 do
     if checaVitoria[i][1] ~= nill and checaVitoria[i][2] ~= nill and checaVitoria[i][3] ~= nill then
       if checaVitoria[i][1] == 1 and checaVitoria[i][2] == 1 and checaVitoria[i][3] == 1 then
-        --print("vitória do x");     
+        --print("vitória do x"); 
         stop = true;
         printX = true;
       elseif checaVitoria[i][1] == 0 and checaVitoria[i][2] == 0 and checaVitoria[i][3] == 0 then

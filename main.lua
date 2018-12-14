@@ -21,7 +21,6 @@ end
 
 -- desenha na tela
 function love.draw()
-
   mapa_draw()
   player_draw()
 

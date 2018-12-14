@@ -1,4 +1,6 @@
 require "player"
+require "menu"
+
 
 -- fecha o jogo
 function close()
@@ -13,15 +15,20 @@ function restart()
     mapa_load();
   end
 end
+function start()
+  if menuInc and not love.keyboard.isDown ("return")  then 
+    love.graphics.draw(menu, 50, 50)
+  elseif love.keyboard.isDown ("return") then
+    mapa_draw()
+  end
+end
 
---jogada = 1
-
--- function mapa_load()
---   font1 = love.graphics.newFont("fontbases/1543Humane_jenson_bold.TTF",72)
--- end
 function mapa_load()
+  menu_load()
   imagens = {}  
   posicoes = {}
+  
+  menuInc = true
 
   imagens[1] = {nil, nil, nil}
   imagens[2] = {nil, nil, nil}
@@ -36,10 +43,9 @@ function mapa_load()
   posicoes[3] = {nil, nil, nil}
 
   jogada = 1
-  
-  love.graphics.setBackgroundColor(1, 0, 1)
+  love.graphics.setBackgroundColor(0, 0, 1)
   imgX = love.graphics.newImage("imagens/x0.png")
-  imgO = love.graphics.newImage("imagens/o0.png")  
+  imgO = love.graphics.newImage("imagens/o1.png")  
 
   player_load()
 
@@ -47,6 +53,7 @@ end
 
 function mapa_update()
   if love.mouse.isDown("1") then
+    love.audio.play(jogadaSound)
     mX = love.mouse.getX()
     mY = love.mouse.getY()
   end
@@ -54,27 +61,29 @@ end
 
 
 function mapa_draw()
-  love.graphics.print({{0, 0, 0, 1}, 'Jogo da Velha'}, 350, 40)
+  
+  menu_draw()
+  
   -- desenha os retangulos
   if stop then 
     love.graphics.setColor( math.random(), math.random(), math.random());
   else
     love.graphics.setColor( 255, 255, 255);
   end
-
-  -- primeira linha
-  rectangle1 = love.graphics.rectangle("fill", 120, 100, 175, 125);
-  rectangle2 = love.graphics.rectangle("fill", 300, 100, 175, 125);
-  rectangle3 = love.graphics.rectangle("fill", 480, 100, 175, 125);
-  -- segunda linha 
-  rectangle4 = love.graphics.rectangle("fill", 120, 230, 175, 125);
-  rectangle5 = love.graphics.rectangle("fill", 300, 230, 175, 125);
-  rectangle6 = love.graphics.rectangle("fill", 480, 230, 175, 125);
-  --terceira linha
-  rectangle7 = love.graphics.rectangle("fill", 120, 360, 175, 125);
-  rectangle8 = love.graphics.rectangle("fill", 300, 360, 175, 125);
-  rectangle9 = love.graphics.rectangle("fill", 480, 360, 175, 125);
-
+  
+  
+    -- primeira linha
+    rectangle1 = love.graphics.rectangle("fill", 120, 100, 175, 125);
+    rectangle2 = love.graphics.rectangle("fill", 300, 100, 175, 125);
+    rectangle3 = love.graphics.rectangle("fill", 480, 100, 175, 125);
+    -- segunda linha 
+    rectangle4 = love.graphics.rectangle("fill", 120, 230, 175, 125);
+    rectangle5 = love.graphics.rectangle("fill", 300, 230, 175, 125);
+    rectangle6 = love.graphics.rectangle("fill", 480, 230, 175, 125);
+    --terceira linha
+    rectangle7 = love.graphics.rectangle("fill", 120, 360, 175, 125);
+    rectangle8 = love.graphics.rectangle("fill", 300, 360, 175, 125);
+    rectangle9 = love.graphics.rectangle("fill", 480, 360, 175, 125);  
   for i = 1, 3 do
     for j = 1, 3 do
 
