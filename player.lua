@@ -1,5 +1,6 @@
 require "sound"
 
+-- carrega
 function player_load()
 
   sound_load()
@@ -16,15 +17,18 @@ function player_load()
 
   velha = love.graphics.newImage("imagens/velha.png") 
   venceX = love.graphics.newImage("imagens/winner-x.png") 
-  venceO = love.graphics.newImage("imagens/winner-o.png") 
+  venceO = love.graphics.newImage("imagens/winner-o.png")
+  
 
 end
 
+-- atualiza a imagem e armazena a imagem correspondende a jogada
 function player_update(x, y, v)
   checaVitoria[x][y] = v
 
 end
 
+-- carrega
 function player_draw()
   sound_draw()
   checaLinha() 
@@ -32,6 +36,7 @@ function player_draw()
   checaDiagonal1() 
   checaDiagonal2()
 
+-- identifica o vencedor
   if printX ~= nil and printX then    
     love.graphics.draw(venceX, 100, 90)
     love.audio.stop(somFundo);
@@ -48,6 +53,7 @@ function player_draw()
 
 end
 
+-- condições de vitória
 function checaLinha()
   for i = 1, 3 do
     if checaVitoria[i][1] ~= nill and checaVitoria[i][2] ~= nill and checaVitoria[i][3] ~= nill then
