@@ -1,4 +1,5 @@
 
+<<<<<<< HEAD
 --require "mapa"
 
 function menu_load()   
@@ -28,4 +29,14 @@ function menu_mousereleased(mX, mY)
     end
 
   end  
+=======
+function menu_load()  
+  text = love.graphics.newImage("imagens/text.png")
+  --menu = love.graphics.newImage("imagens/menu.png")
+end
+
+function menu_draw()
+  love.graphics.draw(text, 10, 0)
+  --love.graphics.draw(menu, 50, 50)
+>>>>>>> e47b17fd1bac4517c4f441c7560b1d4964c30aed
 end

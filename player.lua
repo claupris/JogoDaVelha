@@ -19,7 +19,8 @@ function player_load()
 
   velha = love.graphics.newImage("imagens/velha.png") 
   venceX = love.graphics.newImage("imagens/winner-x.png") 
-  venceO = love.graphics.newImage("imagens/winner-o.png") 
+  venceO = love.graphics.newImage("imagens/winner-o.png")
+  
 
 
 end
@@ -30,11 +31,14 @@ function player_update(x, y, v)
 
 end
 
+<<<<<<< HEAD
 function setCursor()
   cursor = love.mouse.getSystemCursor("arrow")
   love.mouse.setCursor(cursor)
 end
 
+=======
+>>>>>>> e47b17fd1bac4517c4f441c7560b1d4964c30aed
 -- carrega
 function player_draw()
   --

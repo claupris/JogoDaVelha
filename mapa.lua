@@ -24,6 +24,7 @@ function start()
   end
 end
 
+<<<<<<< HEAD
 function backward()
   if menuInc ~= 1 and love.keyboard.isDown ("backspace")  then 
     menuInc = 1;   
@@ -38,6 +39,11 @@ end
 -- carrega
 function mapa_load()  
 
+=======
+-- carrega
+function mapa_load()
+  menu_load()
+>>>>>>> e47b17fd1bac4517c4f441c7560b1d4964c30aed
   imagens = {}  
   posicoes = {}
 
@@ -66,6 +72,8 @@ function mapa_load()
   btnVoltar = love.graphics.newImage("imagens/back-button.png")  
 
   player_load()
+  cusorX = love.mouse.newCursor( "imagens/x0.png", hotx, hoty )
+  cusorO = love.mouse.newCursor( "imagens/o1.png", hotx, hoty )
 
   mouseMove()
 
@@ -83,17 +91,22 @@ function mapa_load()
 end
 
 -- atualiza
+<<<<<<< HEAD
 function mapa_update()  
 
   mouseX = love.mouse.getX()
   mouseY = love.mouse.getY()
 
+=======
+function mapa_update()
+>>>>>>> e47b17fd1bac4517c4f441c7560b1d4964c30aed
   if love.mouse.isDown("1") then
     love.audio.play(jogadaSound)
     mX = love.mouse.getX()
     mY = love.mouse.getY()
   end
 
+<<<<<<< HEAD
 end
 
 -- desenha
@@ -108,6 +121,17 @@ function mapa_draw()
 
 --   desenha os retangulos
 
+=======
+-- desenha
+function mapa_draw()
+  
+  menu_draw()
+  
+  -- desenha os retangulos
+  if stop then 
+    love.graphics.setColor(255, 255, 255);
+  else
+>>>>>>> e47b17fd1bac4517c4f441c7560b1d4964c30aed
     love.graphics.setColor( 255, 255, 255);
     -- primeira linha
     rectangle1 = love.graphics.rectangle("fill", 120, 100, 175, 125);
@@ -121,6 +145,21 @@ function mapa_draw()
     rectangle7 = love.graphics.rectangle("fill", 120, 360, 175, 125);
     rectangle8 = love.graphics.rectangle("fill", 300, 360, 175, 125);
     rectangle9 = love.graphics.rectangle("fill", 480, 360, 175, 125);  
+<<<<<<< HEAD
+=======
+    
+  -- desenha o X e a O no local correto
+  for i = 1, 3 do
+    for j = 1, 3 do
+
+      if imagens[i][j]== nil and posicoes[i][j] ~= nil and jogada%2 == 0 then
+        imagens[i][j] = imgO;
+        player_update(i, j, 0)
+      elseif imagens[i][j]== nil and  posicoes[i][j] ~= nil and jogada%2 == 1 then
+        imagens[i][j] = imgX;
+        player_update(i, j, 1)
+      end
+>>>>>>> e47b17fd1bac4517c4f441c7560b1d4964c30aed
 
     -- desenha o X e a O no local correto
     for i = 1, 3 do
@@ -148,6 +187,7 @@ function mapa_draw()
       print('stop', jogada)
     end
 
+<<<<<<< HEAD
 
     love.graphics.draw(btnVoltar, 20, 500)
 
@@ -159,6 +199,12 @@ function mapa_draw()
   elseif menuInc == 1 then
     setCursor()
     menu_draw()     
+=======
+-- condição de parada
+  if not stop and jogada > 9 then
+    stop = true
+    print('stop', jogada)
+>>>>>>> e47b17fd1bac4517c4f441c7560b1d4964c30aed
   end
 
 
