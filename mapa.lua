@@ -26,6 +26,9 @@ end
 
 function backward()
   if menuInc ~= 1 and love.keyboard.isDown ("backspace")  then 
+    if start then
+      mapa_load(); 
+    end
     menuInc = 1;   
   end
 end
