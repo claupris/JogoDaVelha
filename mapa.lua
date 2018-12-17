@@ -74,7 +74,9 @@ function mapa_load()
 
   mouse = false
 
-  if cursorO == nil and cursorX == nil then 
+  supported = love.mouse.isCursorSupported()
+
+  if supported and cursorO == nil and cursorX == nil then 
     cursorO = love.mouse.newCursor( "imagens/omouse.png", mouseX, mouseY )
     cursorX = love.mouse.newCursor( "imagens/xmouse.png", mouseX, mouseY )    
   end
@@ -103,9 +105,9 @@ end
 function mapa_draw()
   if menuInc == 3 then 
 
-    if mouse then
+    if supported and mouse then
       love.mouse.setCursor(cursorX);
-    else
+    elseif supported then
       love.mouse.setCursor(cursorO);
     end
 
@@ -146,7 +148,7 @@ function mapa_draw()
 
 -- condição de parada
     if not stop and jogada > 9 then    
-      setCursor()
+      setCursor(supported)
       stop = true
       print('stop', jogada)
     end
@@ -156,11 +158,11 @@ function mapa_draw()
 
     love.graphics.draw(text, 10, 0)
   elseif menuInc == 2 then
-    setCursor()
+    setCursor(supported)
     menu_draw() 
     love.graphics.draw(btnVoltar, 20, 500)
   elseif menuInc == 1 then
-    setCursor()
+    setCursor(supported)
     menu_draw()     
   end
 

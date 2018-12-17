@@ -2,7 +2,7 @@ require "sound"
 
 -- carrega
 function player_load()
-  
+
   sound_update()
 
   sound_load()
@@ -30,9 +30,11 @@ function player_update(x, y, v)
 
 end
 
-function setCursor()
-  cursor = love.mouse.getSystemCursor("arrow")
-  love.mouse.setCursor(cursor)
+function setCursor( supported )
+  if supported then
+    cursor = love.mouse.getSystemCursor("arrow")
+    love.mouse.setCursor(cursor)
+  end
 end
 
 -- carrega
