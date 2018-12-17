@@ -81,7 +81,11 @@ function mapa_load()
     cursorX = love.mouse.newCursor( "imagens/xmouse.png", mouseX, mouseY )    
   end
 
+  jogarO = love.graphics.newImage( "imagens/omouse.png")
+  jogarX = love.graphics.newImage( "imagens/xmouse.png")
+
   text = love.graphics.newImage("imagens/text.png")
+  jogardoViewer = love.graphics.newImage("imagens/jogador-view.png")
 
   menu_load()
 
@@ -127,6 +131,8 @@ function mapa_draw()
     rectangle8 = love.graphics.rectangle("fill", 300, 360, 175, 125);
     rectangle9 = love.graphics.rectangle("fill", 480, 360, 175, 125);  
 
+    rectangleJogador = love.graphics.rectangle("fill", 710, 150, 70, 70);
+
     -- desenha o X e a O no local correto
     for i = 1, 3 do
       for j = 1, 3 do
@@ -145,6 +151,13 @@ function mapa_draw()
 
       end
     end
+    
+    love.graphics.draw(jogardoViewer, 710, 125)
+    if mouse then
+      love.graphics.draw(jogarX, 720, 160)
+    else 
+      love.graphics.draw(jogarO, 720, 160)
+    end
 
 -- condição de parada
     if not stop and jogada > 9 then    
@@ -152,7 +165,6 @@ function mapa_draw()
       stop = true
       print('stop', jogada)
     end
-
 
     love.graphics.draw(btnVoltar, 20, 500)
 
